@@ -8,7 +8,9 @@
           <%= image_tag("http://placehold.it/200x200&text=No pic", class: "thumbnail") %>
         <% end %>
       <% end %>
-      <%= product.title %> ¥ <%= product.price %>
+      <%= product.title %> <br>
+      ¥: <%= product.price %> <br>
+      上新时间: <%= product.created_at.to_s(:db) %>
     </div>
   <% end %>
 </div>
