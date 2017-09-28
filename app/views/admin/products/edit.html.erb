@@ -2,36 +2,12 @@
 
 <%= simple_form_for [:admin, @product] do |f| %>
 
-  <div class="group">
-    <%= f.input :title %>
-  </div>
-
-  <div class="group">
-    <%= f.input :description %>
-  </div>
-
-  <div class="group">
-    <%= f.input :quantity %>
-  </div>
-
-  <div class="group">
-    <%= f.input :price %>
-  </div>
+  <%= render :partial => "form", :locals => { :f => f } %>
 
   <% if @product.image.present? %>
     <span>目前图片</span> <br>
     <%= image_tag(@product.image.thumb.url) %>
   <% end %>
-
-  <div class="group">
-    <%= f.input :image, as: :file %>
-  </div>
-
-  <div class="group">
-    <%= f.label :friendly_id %>
-    <%= f.text_field :friendly_id, :required => true, :class => "form-control" %>
-    <p class="help-block">现小写英数字及横线，将作为网址的一部分</p>
-  </div>
 
   <%= f.submit "Submit", data: { disable_with: "Submitting..." } %>
 

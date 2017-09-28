@@ -1,0 +1,31 @@
+<div class="group">
+  <%= f.input :title %>
+</div>
+
+<div class="group">
+  <%= f.input :description %>
+</div>
+
+<div class="group">
+  <%= f.input :quantity %>
+</div>
+
+<div class="group">
+  <%= f.input :price%>
+</div>
+
+<div class="group">
+  <%= f.input :image, as: :file %>
+</div>
+
+<div class="group">
+  <%= f.label :friendly_id %>
+  <%= f.text_field :friendly_id, :required => true, :class => "form-control" %>
+  <p class="help-block">现小写英数字及横线，将作为网址的一部分</p>
+</div>
+
+<div class="group">
+  <%= f.label :category_id %>
+  <%= link_to("添加类别", new_admin_category_path, class: "btn btn-link") %>
+  <%= f.select :category_id, Category.all.map{ |c| [c.name, c.id] }, {}, :class => "form-control" %>
+</div>
