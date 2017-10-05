@@ -10,6 +10,9 @@ class Product < ApplicationRecord
 
   belongs_to :category, :optional => true
 
+  has_many :memberships
+  has_many :categories, :through => :memberships
+
   def to_param
     self.friendly_id
   end
