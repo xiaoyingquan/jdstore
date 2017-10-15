@@ -3,7 +3,7 @@
 </div>
 
 <div class="group">
-  <%= f.input :description %>
+  <%= f.input :description, as: :ckeditor %>
 </div>
 
 <div class="group">
@@ -25,7 +25,7 @@
 </div>
 
 <div class="group">
-  <%= f.label :category_id %>
+  <%= f.label :category_ids %>
   <%= link_to("添加类别", new_admin_category_path, class: "btn btn-link") %>
   <%= f.select :category_ids, Category.all.map{ |c| [c.name, c.id] }, {}, :multiple => true, :class => "form-control" %>
 </div>
