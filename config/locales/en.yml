@@ -20,6 +20,13 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  product:
+    status:
+      draft: Draft
+      public: Public
+      private: Private
+  bulk_update: bulk_update
+  bulk_delete: Bulk_delete
   admin:
     product_list: Product_list
 

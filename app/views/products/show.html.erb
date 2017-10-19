@@ -8,6 +8,7 @@
   </div>
   <div class="col-md-6">
     <h2> <%= @product.title %> </h2>
+    <h2><%= t(@product.status, :scope => "product.status") %></h2>
     <div>
       <h4>类别：<h4>
       <!-- <%= @product.categories.each do |c| %> -->

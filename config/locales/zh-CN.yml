@@ -1,4 +1,11 @@
 "zh-CN":
+  product:
+    status:
+      draft: 未上架
+      public: 上架
+      private: 下架
+  bulk_update: 批次编辑
+  bulk_delete: 批次删除
   hello: "亲～ %{name} 你好："
   admin:
     product_list: 商品列表管理

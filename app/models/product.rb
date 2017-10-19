@@ -1,6 +1,9 @@
 class Product < ApplicationRecord
   mount_uploader :image, ImageUploader
 
+  STATUS = ["draft", "public", "private"]
+  validates_inclusion_of :status, :in => STATUS
+
   validates_presence_of :friendly_id
 
   validates_uniqueness_of :friendly_id

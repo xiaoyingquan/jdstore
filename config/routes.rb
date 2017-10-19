@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   resource :user
 
   namespace :admin do
-    resources :products
+    resources :products do
+      collection do
+        post :bulk_update
+      end
+    end
     resources :categories
     resources :orders do
       member do
