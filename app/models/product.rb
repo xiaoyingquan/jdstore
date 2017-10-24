@@ -1,4 +1,8 @@
 class Product < ApplicationRecord
+
+  include RankedModel
+  ranks :row_order
+
   mount_uploader :image, ImageUploader
 
   STATUS = ["draft", "public", "private"]

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171018231256) do
+ActiveRecord::Schema.define(version: 20171024221608) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer  "cart_id"
@@ -76,8 +76,10 @@ ActiveRecord::Schema.define(version: 20171018231256) do
     t.string   "friendly_id"
     t.integer  "category_id"
     t.string   "status",      default: "draft"
+    t.integer  "row_order"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["friendly_id"], name: "index_products_on_friendly_id", unique: true
+    t.index ["row_order"], name: "index_products_on_row_order"
   end
 
   create_table "users", force: :cascade do |t|

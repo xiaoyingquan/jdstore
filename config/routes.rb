@@ -6,10 +6,15 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :products do
+      member do
+        post :reorder
+      end
+
       collection do
         post :bulk_update
       end
     end
+
     resources :categories
     resources :orders do
       member do

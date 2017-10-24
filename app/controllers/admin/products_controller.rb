@@ -6,7 +6,7 @@ class Admin::ProductsController < ApplicationController
   before_action :admin_required
 
   def index
-    @products = Product.all
+    @products = Product.rank(:row_order).all
   end
 
   def new
@@ -68,6 +68,14 @@ class Admin::ProductsController < ApplicationController
     end
 
     flash[:alert] = "成功完成 #{total} 笔"
+    redirect_to admin_products_path
+  end
+
+  def reorder
+    @product = Product.find_by_friendly_id!(params[:id])
+    @product.row_order_position = params[:position]
+    @product.save!
+
     redirect_to admin_products_path
   end
 
