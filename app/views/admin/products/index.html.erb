@@ -15,9 +15,9 @@
         <th width="100"> Options</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="sortable">
       <% @products.each do |product| %>
-        <tr>
+        <tr data-reorder-url="<%= reorder_admin_product_path(product) %>">
           <td>
             <%= check_box_tag "ids[]", product.id %>
           </td>
@@ -40,11 +40,9 @@
             <%= product.price %>
           </td>
           <td>
-            <%= link_to "上移", reorder_admin_product_path(product, :position => :up), :method => :post, :class => "btn btn-default" %>
-            <%= link_to "下移", reorder_admin_product_path(product, :position => :down), :method => :post, :class => "btn btn-default" %>
             <%= link_to "置顶", reorder_admin_product_path(product, :position => :first), :method => :post, :class => "btn btn-default" %>
             <%= link_to "置底", reorder_admin_product_path(product, :position => :last), :method => :post, :class => "btn btn-default" %>
-            <%= link_to "Edit", edit_admin_product_path(product), :class => "btn btn-default" %>
+            <%= link_to "Edit", edit_admin_product_path(product), :class => "btn btn-primary" %>
             <%= link_to "Delete", admin_product_path(product), :method => "delete", :data => { :confirm => "Are you sure?" }, :class => "btn btn-danger" %>
           </td>
         </tr>
@@ -70,4 +68,24 @@
       $("input[name='ids[]']").prop("checked", false);
     }
   })
+
+  $( ".sortable" ).sortable({
+    axis: 'y',       // 限制只能上下拖拉
+    items: 'tr',     // 拖拉整个 tr
+    cursor: 'move',  // 变更拖拉时的 icon
+
+    stop:function(p, ui){      // 当拖拉结束时，会调用这个方法
+      ui.item.children('td').effect('highlight', {}, 1000)
+    },
+    update: function(p, ui) {   // 当拖拉结束并且 DOM 上的位置变更时，会调用这个方法
+      reorder_url = ui.item.data('reorder-url')
+      position = ui.item.index()  // 取得顺序
+      $.ajax({
+        type: 'POST',
+        url: reorder_url,
+        dataType: 'json',
+        data: { position: position }
+      })
+    }
+  });
 </script>

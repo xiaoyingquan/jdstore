@@ -76,7 +76,10 @@ class Admin::ProductsController < ApplicationController
     @product.row_order_position = params[:position]
     @product.save!
 
-    redirect_to admin_products_path
+    respond_to do |format|
+      format.html { redirect_to admin_products_path }
+      format.json { render :json => { :message => "ok" } }
+    end
   end
 
 private
