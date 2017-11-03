@@ -17,4 +17,5 @@
 //= require select2
 //= require ckeditor/init
 //= require jquery-ui
+//= require validator.min
 //= require_tree .

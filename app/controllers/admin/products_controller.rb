@@ -49,7 +49,7 @@ class Admin::ProductsController < ApplicationController
     @product = Product.find_by_friendly_id!(params[:id])
 
     @product.destroy
-    radiract_to admin_paroducts_path, alert:'Product deleted'
+    redirect_to admin_products_path, alert:'Product deleted'
   end
 
   def bulk_update
